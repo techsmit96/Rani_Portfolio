@@ -26,10 +26,9 @@ const Projects = ({ openModal, setOpenModal }) => {
       <Wrapper>
         <Title>Projects</Title>
         <Desc>
-          I have worked on a wide range of projects. From web apps to android
-          apps. Here are some of my projects.
+          I have worked on a wide range of projects. Here are some of my projects.
         </Desc>
-        <ToggleButtonGroup>
+        {/* <ToggleButtonGroup>
           {toggle === "all" ? (
             <ToggleButton active value="all" onClick={() => setToggle("all")}>
               All
@@ -87,7 +86,7 @@ const Projects = ({ openModal, setOpenModal }) => {
               MACHINE LEARNING
             </ToggleButton>
           )}
-        </ToggleButtonGroup>
+        </ToggleButtonGroup> */}
         <CardContainer>
           {toggle === "all" &&
             projects.map((project) => (
