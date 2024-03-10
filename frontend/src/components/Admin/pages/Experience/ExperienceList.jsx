@@ -121,7 +121,6 @@ const ExperienceList = () => {
 
   return (
     <>
-      {rows.length > 0 && (
         <Paper sx={{ width: "98%", overflow: "hidden", padding: "12px" }}>
           <Typography
             gutterBottom
@@ -160,6 +159,7 @@ const ExperienceList = () => {
           </Stack>
           <Box height={10} />
           <TableContainer sx={{ maxHeight: 440 }}>
+          {rows.length > 0 ? (
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
@@ -244,6 +244,16 @@ const ExperienceList = () => {
                   })}
               </TableBody>
             </Table>
+            ) : (
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              sx={{ padding: "10px", textAlign: "center" }}
+            >
+              Not Data Found.
+            </Typography>
+          )}
           </TableContainer>
           <TablePagination
             rowsPerPageOptions={[5, 10, 25, 100]}
@@ -255,7 +265,6 @@ const ExperienceList = () => {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Paper>
-      )}{" "}
       <div>
         <Modal
           open={open}

@@ -121,45 +121,45 @@ const EducationList = () => {
 
   return (
     <>
-      {rows.length > 0 && (
-        <Paper sx={{ width: "98%", overflow: "hidden", padding: "12px" }}>
+      <Paper sx={{ width: "98%", overflow: "hidden", padding: "12px" }}>
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{ padding: "20px" }}
+        >
+          Education List
+        </Typography>
+        <Divider />
+        <Box height={10} />
+        <Stack direction="row" spacing={2} className="my-2 mb-2">
+          <Autocomplete
+            // disablePortal
+            id="combo-box-demo"
+            options={rows}
+            sx={{ width: 300 }}
+            onChange={(e, v) => filterData(v)}
+            getOptionLabel={(rows) => rows.degree || ""}
+            renderInput={(params) => (
+              <TextField {...params} size="small" label="Search Degree" />
+            )}
+          />
           <Typography
-            gutterBottom
-            variant="h5"
+            variant="h6"
             component="div"
-            sx={{ padding: "20px" }}
+            sx={{ flexGrow: 1 }}
+          ></Typography>
+          <Button
+            variant="contained"
+            endIcon={<AddCircleIcon />}
+            onClick={handleOpen}
           >
-            Education List
-          </Typography>
-          <Divider />
-          <Box height={10} />
-          <Stack direction="row" spacing={2} className="my-2 mb-2">
-            <Autocomplete
-              // disablePortal
-              id="combo-box-demo"
-              options={rows}
-              sx={{ width: 300 }}
-              onChange={(e, v) => filterData(v)}
-              getOptionLabel={(rows) => rows.degree || ""}
-              renderInput={(params) => (
-                <TextField {...params} size="small" label="Search Degree" />
-              )}
-            />
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1 }}
-            ></Typography>
-            <Button
-              variant="contained"
-              endIcon={<AddCircleIcon />}
-              onClick={handleOpen}
-            >
-              Add
-            </Button>
-          </Stack>
-          <Box height={10} />
-          <TableContainer sx={{ maxHeight: 440 }}>
+            Add
+          </Button>
+        </Stack>
+        <Box height={10} />
+        <TableContainer sx={{ maxHeight: 440 }}>
+          {rows.length > 0 ? (
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
@@ -242,25 +242,34 @@ const EducationList = () => {
                   })}
               </TableBody>
             </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25, 100]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        </Paper>
-      )}{" "}
+          ) : (
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              sx={{ padding: "10px", textAlign: "center" }}
+            >
+              Not Data Found.
+            </Typography>
+          )}
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25, 100]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+
       <div>
         <Modal
           open={open}
           // onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
-          
         >
           <Box sx={style}>
             <AddEducation closeEvent={handleClose} />
